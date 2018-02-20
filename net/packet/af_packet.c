@@ -1376,7 +1376,7 @@ static struct packet_fanout *fanout_release(struct sock *sk)
 
 	mutex_lock(&fanout_mutex);
 	f = po->fanout;
-	if (f)
+	if (f){
 		po->fanout = NULL;
 
 		if (atomic_dec_and_test(&f->sk_ref))
