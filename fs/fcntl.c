@@ -25,7 +25,9 @@
 #include <asm/poll.h>
 #include <asm/siginfo.h>
 #include <asm/uaccess.h>
-
+#ifndef F_GETOWNER_UIDS
+#define F_GETOWNER_UIDS 17
+#endif
 #define SETFL_MASK (O_APPEND | O_NONBLOCK | O_NDELAY | O_DIRECT | O_NOATIME)
 
 static int setfl(int fd, struct file * filp, unsigned long arg)

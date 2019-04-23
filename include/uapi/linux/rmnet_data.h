@@ -223,8 +223,12 @@ enum rmnet_netlink_message_types_e {
 	 *       uint32_t MAP Flow Handle
 	 * Returns: status code
 	 */
-	RMNET_NETLINK_DEL_VND_TC_FLOW
+	RMNET_NETLINK_DEL_VND_TC_FLOW,
+	// RMNET_NETLINK_NEW_VND_WITH_NAME - Creates a new virtual network device node with the specified device name
+	RMNET_NETLINK_NEW_VND_WITH_NAME
 };
+
+#define RMNET_NETLINK_NEW_VND_WITH_NAME RMNET_NETLINK_NEW_VND_WITH_NAME
 
 enum rmnet_config_endpoint_modes_e {
 	/* Pass the frame up the stack with no modifications to skb->dev      */
