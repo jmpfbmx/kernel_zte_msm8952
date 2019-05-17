@@ -243,8 +243,7 @@ static void aw2013_brightness_work(struct work_struct *work)
 	}
 	if (led->pdata->led->poweron) {
 		if (led->cdev.brightness > 0) {
-			pr_err("%s led->brightness: %d, led->name: %s\n",
-					__func__, led->cdev.brightness, led->cdev.name);
+			//pr_err("%s led->brightness: %d, led->name: %s\n", __func__, led->cdev.brightness, led->cdev.name);
 			if (led->cdev.brightness > led->cdev.max_brightness)
 				led->cdev.brightness = led->cdev.max_brightness;
 			aw2013_write(led, AW_REG_RESET, 0x55);
@@ -258,24 +257,23 @@ static void aw2013_brightness_work(struct work_struct *work)
 			aw2013_read(led, AW_REG_LED_ENABLE, &val);
 			aw2013_write(led, AW_REG_LED_ENABLE, val | (1 << led->id));
 		} else {
-			pr_err("%s led->brightness: %d,led->name: %s\n",
-					__func__, led->cdev.brightness, led->cdev.name);
+			//pr_err("%s led->brightness: %d,led->name: %s\n",__func__, led->cdev.brightness, led->cdev.name);
 			aw2013_read(led, AW_REG_LED_ENABLE, &val);
 			aw2013_write(led, AW_REG_LED_ENABLE, val & (~(1 << led->id)));
 		}
 
 		for (i = 0; i < 3; i++) {
 			aw2013_read(led, 0x00+i, &val);
-			if (val != 0)
-				pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x00+i, val);
+			//if (val != 0)
+			//	pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x00+i, val);
 		}
 		for (i = 0; i < 16; i++) {
 			aw2013_read(led, 0x30+i, &val);
-			if (val != 0)
-				pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x30+i, val);
+			//if (val != 0)
+			//	pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x30+i, val);
 		}
 		aw2013_read(led, 0x77, &val);
-		pr_err("%s aw2013_reg [0x77]: 0x%x\n", __func__, val);
+		//pr_err("%s aw2013_reg [0x77]: 0x%x\n", __func__, val);
 		aw2013_read(led, AW_REG_LED_ENABLE, &val);
 		/*
 		* If value in AW_REG_LED_ENABLE is 0, it means the RGB leds are
@@ -309,8 +307,7 @@ static void aw2013_led_blink_set(struct aw2013_led *led, unsigned long blinking)
 		led->cdev.brightness = blinking ? led->cdev.max_brightness : 0;
 
 		if (blinking > 0) {
-			pr_err("%s led->brightness: %d, led->name:%s\n",
-					__func__, led->cdev.brightness, led->cdev.name);
+			//pr_err("%s led->brightness: %d, led->name:%s\n", __func__, led->cdev.brightness, led->cdev.name);
 			aw2013_write(led, AW_REG_RESET, 0x55);
 			msleep(20);
 			aw2013_write(led, AW_REG_GLOBAL_CONTROL,
@@ -329,26 +326,25 @@ static void aw2013_led_blink_set(struct aw2013_led *led, unsigned long blinking)
 			aw2013_read(led, AW_REG_LED_ENABLE, &val);
 			aw2013_write(led, AW_REG_LED_ENABLE, val | (1 << led->id));
 		} else {
-			pr_err("%s led->brightness: %d, led->name: %s\n",
-					__func__, led->cdev.brightness, led->cdev.name);
+			//pr_err("%s led->brightness: %d, led->name: %s\n", __func__, led->cdev.brightness, led->cdev.name);
 			aw2013_read(led, AW_REG_LED_ENABLE, &val);
 			aw2013_write(led, AW_REG_LED_ENABLE, val & (~(1 << led->id)));
 		}
 
 		for (i = 0; i < 3; i++) {
 			aw2013_read(led, 0x00+i, &val);
-			if (val != 0)
-				pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x00+i, val);
+			//if (val != 0)
+			//	pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x00+i, val);
 		}
 
 		for (i = 0; i < 16; i++) {
 			aw2013_read(led, 0x30+i, &val);
-			if (val != 0)
-				pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x30+i, val);
+			//if (val != 0)
+			//	pr_err("%s aw2013_reg [0x%x]: 0x%x\n", __func__, 0x30+i, val);
 		}
 
 		aw2013_read(led, 0x77, &val);
-		pr_err("%s aw2013_reg [0x77]: 0x%x\n", __func__, val);
+		//pr_err("%s aw2013_reg [0x77]: 0x%x\n", __func__, val);
 		aw2013_read(led, AW_REG_LED_ENABLE, &val);
 		/*
 		* If value in AW_REG_LED_ENABLE is 0, it means the RGB leds are
