@@ -1174,7 +1174,7 @@ void rand_initialize_disk(struct gendisk *disk)
 static ssize_t
 _random_read(int nonblock, char __user *buf, size_t nbytes)
 {
-	ssize_t n, retval = 0, count = 0;
+	/*ssize_t n, retval = 0, count = 0;
 
 	if (nbytes == 0)
 		return 0;
@@ -1223,9 +1223,10 @@ _random_read(int nonblock, char __user *buf, size_t nbytes)
 		nbytes -= n;
 		break;		/* This break makes the device work */
 				/* like a named pipe */
-	}
+	//}
 
-	return (count ? count : retval);
+	//return (count ? count : retval);
+	return extract_entropy_user(&nonblocking_pool, buf, nbytes);
 }
 
 static ssize_t
