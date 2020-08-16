@@ -30,7 +30,10 @@
 
 #define	LID_DEV_NAME	"hall_sensor"
 #define HALL_INPUT	"/dev/input/hall_dev"
-extern int gloved_finger_hall_status(bool flag); /* add by tp for gloved mode */
+int gloved_finger_hall_status(bool flag)
+{
+ return 0;
+}
 
 struct hall_data {
 	int gpio;	/* device use gpio number */
